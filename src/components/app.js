@@ -2,6 +2,6 @@ import React from 'react';
 
 export default (props) => {
   return (
-    <div>{props.children}</div>
+    <div className="app">{props.children}</div>
   );
 };

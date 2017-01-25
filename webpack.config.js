@@ -22,13 +22,14 @@ const config = {
       {
         use: 'babel-loader',
         test: /\.js$/,
-        exclude: '/node_modules/',
+        exclude: /node_modules/,
       },
       {
+        test: /\.(scss|css)$/,
         loader: ExtractTextPlugin.extract({
-          loader: 'css-loader',
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader!sass-loader',
         }),
-        test: /\.css$/,
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/,

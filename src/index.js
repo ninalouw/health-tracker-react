@@ -7,6 +7,8 @@ import ReduxThunk from 'redux-thunk';
 import Routes from './router';
 import reducers from './reducers/';
 
+import './styles/styles.scss';
+
 const App = () => {
   /* eslint-disable no-underscore-dangle */
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
