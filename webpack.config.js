@@ -41,6 +41,13 @@ const config = {
           'image-webpack-loader',
         ],
       },
+      {
+        test: /\.(otf|ttf|svg|eot)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[hash].[ext]',
+        },
+      },
     ],
   },
   plugins: [
