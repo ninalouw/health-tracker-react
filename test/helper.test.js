@@ -1,5 +1,5 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 import jsdom from 'jsdom';
 import _$ from 'jquery';
 import TestUtils from 'react-addons-test-utils';
@@ -14,15 +14,12 @@ global.window = global.document.defaultView;
 const $ = _$(global.window);
 
 export function renderComponent(ComponentClass, props, state) {
-  TestUtils.renderIntoDocument(
+  const componentInstance = TestUtils.renderIntoDocument(
     <Provider store={createStore(reducers, state)}>
-      <ComponentClass
-        {...props}
-        ref={(component) => { this.component = component; }}
-      />
+      <ComponentClass {...props} />
     </Provider>,
   );
-  return $(this.component);
+  return $(ReactDOM.findDOMNode(componentInstance));
 }
 
 // set up jquery function to simulate events on ComponentClass

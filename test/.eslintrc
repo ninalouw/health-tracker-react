@@ -3,6 +3,7 @@
         "mocha": true,
   },
   "rules": {
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./*.test.js"]}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./*.test.js"]}],
+    "no-unused-expressions": 0
     }
 }
