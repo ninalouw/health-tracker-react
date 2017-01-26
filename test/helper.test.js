@@ -5,6 +5,8 @@ import _$ from 'jquery';
 import TestUtils from 'react-addons-test-utils';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import chai, { expect } from 'chai';
+import chaiJquery from 'chai-jquery';
 import reducers from '../src/reducers';
 
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
@@ -18,7 +20,7 @@ export function renderComponent(ComponentClass, props, state) {
         {...props}
         ref={(component) => { this.component = component; }}
       />
-    </Provider>
+    </Provider>,
   );
   return $(this.component);
 }
@@ -30,3 +32,7 @@ $.fn.simulate = (eventName, value) => {
   }
   TestUtils.Simulate[eventName](this[0]);
 };
+
+chaiJquery(chai, chai.util, $);
+
+export { expect };
