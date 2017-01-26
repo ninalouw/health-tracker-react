@@ -22,3 +22,11 @@ export function renderComponent(ComponentClass, props, state) {
   );
   return $(this.component);
 }
+
+// set up jquery function to simulate events on ComponentClass
+$.fn.simulate = (eventName, value) => {
+  if (value) {
+    this.val(value);
+  }
+  TestUtils.Simulate[eventName](this[0]);
+};
