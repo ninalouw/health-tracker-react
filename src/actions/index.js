@@ -2,6 +2,7 @@
 import axios from 'axios';
 
 export const FETCH_FOODS = 'FETCH_FOODS';
+export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
 
 const ROOT_URL = 'http://localhost:3000/api/v1';
 const config = {
@@ -19,5 +20,8 @@ export function fetchFoods() {
        payload: response.data,
      });
    });
-  }
+ };
 }
+
+const API_KEY = '';
+const ROOT_URL_NUTRIONIX = '';

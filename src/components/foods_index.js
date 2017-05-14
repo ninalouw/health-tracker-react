@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Link } from 'react-router';
+import { Switch, Route, Link } from 'react-router-dom';
 import { fetchFoods } from '../actions/index';
+import FoodsNew from './foods_new';
 
 
 class FoodsIndex extends Component {
@@ -12,7 +13,6 @@ class FoodsIndex extends Component {
   }
 
   componentWillMount() {
-    console.log('this would be a good time to call action creator to fetch foods');
     this.props.fetchFoods();
   }
 
@@ -20,6 +20,7 @@ class FoodsIndex extends Component {
     return this.props.foods.map((food) => {
       return (
         <li className="list-group-item" key={food.id}>
+          <span className="pull-xs-right">{food.categories}</span>
           <strong>{food.title}</strong>
         </li>
       );
@@ -29,7 +30,19 @@ class FoodsIndex extends Component {
 
   render() {
     return (
-      <div className="foodsIndex"> {this.renderFoodsList()} </div>
+      <div>
+        <h3>Your Foods</h3>
+        <div className="list-group">
+          {this.renderFoodsList()}
+        </div>
+        <div className="text-xs-right">
+          <Link to="/new" className="btn btn-primary"><button>Add a Food</button></Link>
+          <Switch>
+            <Route exact path="/new" component={FoodsNew} />
+            {/* <Route path={`/foods/${food.id}`} component={FoodsShow}/> */}
+          </Switch>
+        </div>
+      </div>
     );
   }
 

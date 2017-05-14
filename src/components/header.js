@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
-  render () {
+  render() {
     return (
       <div className="header-bar">
-        <Link to="/">
-          <h1>Health Tracker</h1>
-        </Link>
-        {/* <Link to='foods_index'>
-          <li>Your Foods</li>
-        </Link> */}
-        {/* <Link to='foods_new'>
-          <li>Add a Food</li>
-        </Link> */}
+        <ul className="navbar">
+          <li className="navbar-li">
+            <Link to="/" className="navbar-a">Main</Link>
+          </li>
+          <li className="navbar-li">
+            <Link to="/foods" className="navbar-a">FoodsIndex</Link>
+          </li>
+        </ul>
       </div>
     );
   }
