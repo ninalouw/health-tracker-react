@@ -1,4 +1,63 @@
-.app {
-  background-color: #111;
-  color: #fff;
+html, body, div {
+  font-family: 'Roboto', sans-serif;
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header-bar {
+  background-color: white;
+  padding: 20px;
+  margin: auto;
+  width: 100vw;
+  height: 90px;
+  position: fixed;
+  overflow: hidden;
+  display: flex;
+  top:0;
+  left:0;
+}
+
+.header-bar li {
+ flex-flow: row wrap;
+ justify-content: space-around;
+ display: block;
+ color: black;
+ text-align: center;
+ padding: 16px 18px;
+ text-decoration: none;
+ font-size: 20px;
+ list-style-type: none;
+}
+
+.header-bar > li > a {
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.header-bar li:first-child{
+  margin-right: 100px;
+}
+
+/* Change the color of links on hover */
+.header-bar li:hover {
+    background-color: #62e4bb;
+    text-decoration: none;
+}
+
+/* Add a color to the active/current link */
+.header-bar li.active {
+    background-color: rgb(241, 18, 72);
+    color: white;
+}
+
+/*Style for main page*/
+.main {
+  width: 100%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 90px;
+  overflow: auto;
+  padding:20px;
 }
