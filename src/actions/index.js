@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 export const FETCH_FOODS = 'FETCH_FOODS';
-export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
+// export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
 
 const ROOT_URL = 'http://localhost:3000/api/v1';
 const config = {
@@ -23,5 +23,18 @@ export function fetchFoods() {
  };
 }
 
-const API_KEY = '';
-const ROOT_URL_NUTRIONIX = '';
+export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
+const API_KEY = '66464e4956c3d5667e8fe482be63deda';
+const API_ID = '1e920e3e';
+
+export function fetchFoodCalories(query) {
+  const request = axios.get(`https://api.nutritionix.com/v1_1/search/${query}?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=${API_ID}&appKey=${API_KEY}`);
+
+  console.log('Request', request);
+
+  return {
+    type: FETCH_FOOD_CALORIES,
+    payload: request,
+
+  };
+}
