@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import '../styles/styles.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import FoodsIndex from './foods_index';
 import FoodsNew from './foods_new';
 import Main from './main';
@@ -13,7 +14,6 @@ export default class App extends Component {
         <MuiThemeProvider>
           <div className="app">
             <Header />
-            <hr />
             <Switch>
               <Route exact path="/" component={Main} />
               <Route path="/foods" component={FoodsIndex} />

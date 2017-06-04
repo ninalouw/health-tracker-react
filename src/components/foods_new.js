@@ -5,7 +5,7 @@ import SearchBar from '../containers/search_bar';
 
 class FoodsNew extends Component {
 
-  renderCaloriesData(calorieData) {
+  /*renderCaloriesData(calorieData) {
     const name = calorieData.hits.fields.item_name;
     const calories = calorieData.hits.map(foodCalories => foodCalories.fields.nf_calories);
 
@@ -14,7 +14,7 @@ class FoodsNew extends Component {
         <td>{calories}</td>
       </tr>
     );
-  }
+  }*/
 
   render() {
     return (
@@ -29,7 +29,7 @@ class FoodsNew extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.foodCalories.map(this.renderCaloriesData)}
+            {/*{this.props.foodCalories.map(this.renderCaloriesData)}*/}
           </tbody>
         </table>
       </div>
