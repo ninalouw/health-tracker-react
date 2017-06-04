@@ -5,7 +5,7 @@ export default function (state = INITIAL_STATE, action) {
   console.log('Action received', action);
   switch (action.type) {
     case FETCH_FOOD_CALORIES:
-      return { ...state, foodCalorieList: action.payload };
+      return { ...state, foodCalorieList: action.payload.hits };
     default:
       return state;
   }

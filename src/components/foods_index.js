@@ -36,7 +36,7 @@ class FoodsIndex extends Component {
           {this.renderFoodsList()}
         </div>
         <div className="text-xs-right">
-          <Link to="/new" className="btn btn-primary"><button>Add a Food</button></Link>
+          <Link to="/new" className="btn btn-primary"><button>Search for a Food</button></Link>
           <Switch>
             <Route exact path="/new" component={FoodsNew} />
             {/* <Route path={`/foods/${food.id}`} component={FoodsShow}/> */}

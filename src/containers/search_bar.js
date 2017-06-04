@@ -11,6 +11,7 @@ class SearchBar extends Component {
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.renderFoodCaloriesList = this.renderFoodCaloriesList.bind(this);
   }
 
   onInputChange(event) {
@@ -25,6 +26,16 @@ class SearchBar extends Component {
     this.setState({ term: '' });
   }
 
+  renderFoodCaloriesList() {
+    /*return this.props.foods.map((food) => {
+      return (
+        <li className="list-group-item" key={food.fields.item_id}>
+          {food.fields.item_name}
+        </li>
+      );
+    });*/
+  }
+
   render() {
     return (
       <form onSubmit={this.onFormSubmit} className="input-group">
@@ -37,6 +48,14 @@ class SearchBar extends Component {
         <span className="input-group-btn">
           <button type="submit" className="btn btn-primary">Submit</button>
         </span>
+        {/*<div className="list-group">
+          {this.renderFoodCaloriesList()}
+        </div>*/}
+        {/*<button
+          onClick={this.renderFoodCaloriesList()}
+          name="renderFoodCaloriesList"
+
+        />Render*/}
       </form>
     );
   }
