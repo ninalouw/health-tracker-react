@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchFood } from '../actions/index';
-import { Link } from 'react-router';
 
 class FoodsShow extends Component {
   constructor(props) {
@@ -20,7 +19,7 @@ class FoodsShow extends Component {
     }
 
     return (
-      <div>
+      <div className="foods-show">
         <h3>{food.title}</h3>
         <p>Category: {food.category_id}</p>
         <p> ID: {food.id}</p>

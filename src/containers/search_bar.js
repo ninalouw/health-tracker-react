@@ -27,6 +27,11 @@ class SearchBar extends Component {
   }
 
   renderFoodCaloriesList() {
+    const { foods } = this.props;
+
+    if (!foods) {
+      return <div>Loading...</div>;
+    }
     return this.props.foods.map((food) => {
       return (
         <li className="list-group-item" key={food.fields.item_id}>
@@ -40,6 +45,7 @@ class SearchBar extends Component {
 
   render() {
     return (
+      <div className="search-bar">
       <form onSubmit={this.onFormSubmit} className="input-group">
         <input
           placeholder="Get calorie data from your food search term"
@@ -54,6 +60,7 @@ class SearchBar extends Component {
           {this.renderFoodCaloriesList()}
         </div>
       </form>
+      </div>
     );
   }
 }

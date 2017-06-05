@@ -31,13 +31,13 @@ class FoodsIndex extends Component {
 
   render() {
     return (
-      <div>
+      <div className="foods-index">
         <h3>Your Foods</h3>
         <div className="list-group">
           {this.renderFoodsList()}
         </div>
         <div className="text-xs-right">
-          <Link to="/new" className="btn btn-primary"><button>Search for a Food</button></Link>
+          <Link to="/new" ><button className="btn btn-primary">Search for a Food</button></Link>
           <Switch>
             <Route exact path="/new" component={FoodsNew} />
             {/*<Route path="/foods/:id" component={FoodsShow} />*/}
