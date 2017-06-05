@@ -67,3 +67,7 @@ background-color:white;
     color:#064CC2;
     cursor:pointer;
 }
+
+li > span {
+  display: block;
+}

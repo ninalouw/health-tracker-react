@@ -27,13 +27,15 @@ class SearchBar extends Component {
   }
 
   renderFoodCaloriesList() {
-    /*return this.props.foods.map((food) => {
+    return this.props.foods.map((food) => {
       return (
         <li className="list-group-item" key={food.fields.item_id}>
-          {food.fields.item_name}
+          <span><strong>{food.fields.item_name}</strong></span>
+          <span>Calories:{food.fields.nf_calories}</span>
+          <span>Fats:{food.fields.nf_total_fat}</span>
         </li>
       );
-    });*/
+    });
   }
 
   render() {
@@ -48,22 +50,17 @@ class SearchBar extends Component {
         <span className="input-group-btn">
           <button type="submit" className="btn btn-primary">Submit</button>
         </span>
-        {/*<div className="list-group">
+        <div className="list-group">
           {this.renderFoodCaloriesList()}
-        </div>*/}
-        {/*<button
-          onClick={this.renderFoodCaloriesList()}
-          name="renderFoodCaloriesList"
-
-        />Render*/}
+        </div>
       </form>
     );
   }
 }
 
 
-function mapStateToProps(state) {
-  return { foods: state.foods.foodCalorieList };
+function mapStateToProps({ foodCalories }) {
+  return { foods: foodCalories.foodCalorieList };
 }
 
 export default connect(mapStateToProps, { fetchFoodCalories })(SearchBar);
