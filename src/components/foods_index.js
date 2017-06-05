@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, Link } from 'react-router-dom';
 import { fetchFoods } from '../actions/index';
 import FoodsNew from './foods_new';
+import FoodsShow from './foods_show';
 
 
 class FoodsIndex extends Component {
@@ -21,7 +22,7 @@ class FoodsIndex extends Component {
       return (
         <li className="list-group-item" key={food.id}>
           <span className="pull-xs-right">{food.categories}</span>
-          <strong>{food.title}</strong>
+          <Link to={`foods/${food.id}`}><strong>{food.title}</strong></Link>
         </li>
       );
     });
@@ -39,7 +40,7 @@ class FoodsIndex extends Component {
           <Link to="/new" className="btn btn-primary"><button>Search for a Food</button></Link>
           <Switch>
             <Route exact path="/new" component={FoodsNew} />
-            {/* <Route path={`/foods/${food.id}`} component={FoodsShow}/> */}
+            {/*<Route path="/foods/:id" component={FoodsShow} />*/}
           </Switch>
         </div>
       </div>

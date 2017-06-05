@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 export const FETCH_FOODS = 'FETCH_FOODS';
-// export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
+export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
+export const FETCH_FOOD = 'FETCH_FOOD';
 
 const ROOT_URL = 'http://localhost:3000/api/v1';
 const config = {
@@ -23,7 +24,20 @@ export function fetchFoods() {
   };
 }
 
-export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
+export function fetchFood(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/foods/${id}`, config)
+    .then((response) => {
+      console.log(response);
+      dispatch({
+        type: FETCH_FOOD,
+        payload: response.data,
+      });
+    });
+  };
+}
+
+
 const API_KEY = '66464e4956c3d5667e8fe482be63deda';
 const API_ID = '1e920e3e';
 
