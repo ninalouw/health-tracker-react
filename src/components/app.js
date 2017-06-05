@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import '../styles/styles.css';
+// import materializeCSS from 'materialize-css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import FoodsIndex from './foods_index';
 import FoodsNew from './foods_new';
@@ -14,6 +16,7 @@ export default class App extends Component {
       <Router>
         <MuiThemeProvider>
           <div className="app">
+            {injectTapEventPlugin()}
             <Header />
             <Switch>
               <Route exact path="/" component={Main} />
@@ -25,5 +28,5 @@ export default class App extends Component {
         </MuiThemeProvider>
       </Router>
     );
-  }
+  };
 }

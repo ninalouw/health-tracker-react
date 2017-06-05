@@ -22,7 +22,7 @@ class FoodsIndex extends Component {
       return (
         <li className="list-group-item" key={food.id}>
           <span className="pull-xs-right">{food.categories}</span>
-          <Link to={`foods/${food.id}`}><strong>{food.title}</strong></Link>
+          <Link to={`foods/${food.id}`}>{food.title}</Link>
         </li>
       );
     });
@@ -37,7 +37,7 @@ class FoodsIndex extends Component {
           {this.renderFoodsList()}
         </div>
         <div className="text-xs-right">
-          <Link to="/new" ><button className="btn btn-primary">Search for a Food</button></Link>
+          <Link to="/new" ><button className="btn btn-primary">Add Food</button></Link>
           <Switch>
             <Route exact path="/new" component={FoodsNew} />
             {/*<Route path="/foods/:id" component={FoodsShow} />*/}
