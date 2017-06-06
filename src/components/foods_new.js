@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SearchBar from '../containers/search_bar';
-// import { fetchFoodCalories } from '../actions/index';
-
+import FoodsForm from './foods_form';
 
 
 class FoodsNew extends Component {
@@ -18,9 +17,7 @@ class FoodsNew extends Component {
         <p> Please type in a food, and select the correct food and calorie data combination</p>
         <SearchBar />
         <p>Or, enter a food manually here:</p>
-        <form>
-          <p>This is a form</p>
-        </form>
+        <FoodsForm />
       </div>
     );
   }

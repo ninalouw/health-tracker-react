@@ -22,7 +22,6 @@ class FoodsShow extends Component {
       <div className="foods-show">
         <h3>{food.title}</h3>
         <p>Category: {food.category_id}</p>
-        <p> ID: {food.id}</p>
         <p> Calories: {food.calories}</p>
         <p> Food Group: {food.macro_group}</p>
       </div>
