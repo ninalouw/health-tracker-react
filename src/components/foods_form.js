@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { createFood } from '../actions/index';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import MenuItem from 'material-ui/MenuItem';
 import {
@@ -22,6 +23,9 @@ class FoodsForm extends Component {
 
   onSubmit(values) {
     console.log(values);
+    //here we will call our action creator that will post to api
+    this.props.createFood(values);
+
   }
 
   render() {
@@ -66,16 +70,27 @@ class FoodsForm extends Component {
         </div>
         <div>
           <Field
+            name="macro_group"
+            component={TextField}
+            hintText="Enter Food Group"
+            floatingLabelText="Food group"
+            validate={required}
+            ref="macro_group"
+            withRef
+          />
+        </div>
+        {/*<div>
+          <Field
             name="fats"
             component={TextField}
-            hintText="Enter total fats"
-            floatingLabelText="Total Fat Content"
+            hintText="Enter fats"
+            floatingLabelText="Total fats"
             validate={required}
             ref="fats"
             withRef
           />
-        </div>
-        <div>
+        </div>*/}
+        {/*<div>
           <Field
             name="servings"
             component={TextField}
@@ -85,7 +100,7 @@ class FoodsForm extends Component {
             ref="fats"
             withRef
           />
-        </div>
+        </div>*/}
         <div>
           <Field
             name="date"
@@ -137,9 +152,10 @@ function validate(values) {
 }
 
 
-// exporting our form
 export default reduxForm({
   validate,
   form: 'FoodsNewForm',
-})(FoodsForm);
+})(
+connect(null, { createFood })(FoodsForm)
+)
 

@@ -1,4 +1,4 @@
-import { FETCH_FOODS, FETCH_FOOD } from '../actions/index';
+import { FETCH_FOODS, FETCH_FOOD, CREATE_FOOD } from '../actions/index';
 
 const INITIAL_STATE = { foodList: [], food: null };
 

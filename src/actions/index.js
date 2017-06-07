@@ -4,6 +4,7 @@ import axios from 'axios';
 export const FETCH_FOODS = 'FETCH_FOODS';
 export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
 export const FETCH_FOOD = 'FETCH_FOOD';
+export const CREATE_FOOD = 'CREATE_FOOD';
 
 const ROOT_URL = 'http://localhost:3000/api/v1';
 const config = {
@@ -53,3 +54,18 @@ export function fetchFoodCalories(query) {
    });
   };
 }
+
+export function createFood(values) {
+  return (dispatch) => {
+    axios.post(`${ROOT_URL}/foods`, config, values)
+   .then((response) => {
+     console.log(response);
+     dispatch({
+       type: CREATE_FOOD,
+       payload: response.data,
+     });
+   });
+  };
+}
+
+

@@ -39,7 +39,7 @@ class FoodsIndex extends Component {
         <div className="text-xs-right">
           <Link to="/new" ><button className="btn btn-primary">Add Food</button></Link>
           <Switch>
-            <Route exact path="/new" component={FoodsNew} />
+            <Route path="/new" component={FoodsNew} />
             {/*<Route path="/foods/:id" component={FoodsShow} />*/}
           </Switch>
         </div>
