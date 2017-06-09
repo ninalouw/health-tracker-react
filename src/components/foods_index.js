@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { fetchFoods } from '../actions/index';
-import FoodsNew from './foods_new';
-import FoodsShow from './foods_show';
 
 
 class FoodsIndex extends Component {
   constructor(props) {
     super(props);
 
-    this.renderFoodsList = this.renderFoodsList.bind(this);
+    this.renderFoods = this.renderFoods.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchFoods();
   }
 
-  renderFoodsList() {
+  renderFoods() {
     return this.props.foods.map((food) => {
       return (
         <li className="list-group-item" key={food.id}>
-          <span className="pull-xs-right">{food.categories}</span>
           <Link to={`foods/${food.id}`}>{food.title}</Link>
         </li>
       );
@@ -33,15 +31,11 @@ class FoodsIndex extends Component {
     return (
       <div className="foods-index">
         <h3>Your Foods</h3>
-        <div className="list-group">
-          {this.renderFoodsList()}
-        </div>
+        <ul className="list-group">
+          {this.renderFoods()}
+        </ul>
         <div className="text-xs-right">
-          <Link to="/new" ><button className="btn btn-primary">Add Food</button></Link>
-          <Switch>
-            <Route path="/new" component={FoodsNew} />
-            {/*<Route path="/foods/:id" component={FoodsShow} />*/}
-          </Switch>
+          <Link to="/foods/new" ><button className="btn btn-primary">Add Food</button></Link>
         </div>
       </div>
     );
@@ -51,6 +45,7 @@ class FoodsIndex extends Component {
 
 function mapStateToProps(state) {
   return { foods: state.foods.foodList };
+  // return { foods: state.foods };
 }
 
 export default connect(mapStateToProps, { fetchFoods })(FoodsIndex);

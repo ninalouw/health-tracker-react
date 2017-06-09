@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { fetchFood } from '../actions/index';
 
 class FoodsShow extends Component {
@@ -7,8 +8,11 @@ class FoodsShow extends Component {
     super(props);
   }
 
-  componentWillMount() {
-    this.props.fetchFood(this.props.match.params.id);
+  componentDidMount() {
+    if (!this.props.post) {
+      const { id } = this.props.match.params;
+      this.props.fetchFood(id);
+    }
   }
 
   render() {
@@ -32,4 +36,10 @@ class FoodsShow extends Component {
 function mapStateToProps(state) {
   return { food: state.foods.food };
 }
+
+// grider - to ensure we are only rendering the one post
+// function mapStateToProps( {foods}, ownProps) {
+//     return { food: foods[ownProps.match.params.id] };
+// }
+
 export default connect(mapStateToProps, { fetchFood })(FoodsShow);

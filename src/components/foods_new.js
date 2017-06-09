@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import SearchBar from '../containers/search_bar';
 import FoodsForm from './foods_form';
 
 
 class FoodsNew extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="foods-new">

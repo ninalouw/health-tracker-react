@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { fetchFoodCalories } from '../actions/index';
 
 class SearchBar extends Component {
@@ -34,13 +34,13 @@ class SearchBar extends Component {
     }
     return this.props.foods.map((food) => {
       return (
-          <li className="list-group-item" key={food.fields.item_id}>
-            <span><strong>{food.fields.item_name}</strong></span>
-            <span>Calories: {food.fields.nf_calories} kcal</span>
-            <span>Total Fat: {food.fields.nf_total_fat} grams</span>
-            <span>Serving Size: {food.fields.nf_serving_size_qty} serving</span>
-            <span><button className="btn btn-secondary">Add Food</button></span>
-          </li>
+        <li className="list-group-item" key={food.fields.item_id}>
+          <span><strong>{food.fields.item_name}</strong></span>
+          <span>Calories: {food.fields.nf_calories} kcal</span>
+          <span>Total Fat: {food.fields.nf_total_fat} grams</span>
+          <span>Serving Size: {food.fields.nf_serving_size_qty} serving</span>
+          <span><button className="btn btn-secondary">Add Food</button></span>
+        </li>
       );
     });
   }
@@ -50,17 +50,17 @@ class SearchBar extends Component {
       <div className="search-bar">
         <form onSubmit={this.onFormSubmit} className="input-group">
           <input
-          placeholder="Get calorie data from your food search term"
-          className="form-control"
-          value={this.state.term}
-          onChange={this.onInputChange}
-        />
+            placeholder="Get calorie data from your food search term"
+            className="form-control"
+            value={this.state.term}
+            onChange={this.onInputChange}
+          />
           <span className="input-group-btn">
-          <button type="submit" className="btn btn-primary">Submit</button>
-        </span>
+            <button type="submit" className="btn btn-primary">Submit</button>
+          </span>
           <div className="list-group">
-          {this.renderFoodCaloriesList()}
-        </div>
+            {this.renderFoodCaloriesList()}
+          </div>
         </form>
       </div>
     );

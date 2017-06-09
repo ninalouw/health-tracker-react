@@ -15,7 +15,7 @@ const required = (value) => { return (value == null ? 'Required' : undefined); }
 class FoodsForm extends Component {
 
   componentDidMount() {
-    this.refs.name // the Field
+    this.refs.title // the Field
       .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
       .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
       .focus(); // on TextField
@@ -23,9 +23,10 @@ class FoodsForm extends Component {
 
   onSubmit(values) {
     console.log(values);
-    //here we will call our action creator that will post to api
-    this.props.createFood(values);
-
+    // here we will call our action creator that will post to api
+    this.props.createFood(values, () => {
+        this.props.history.push('/foods');
+    });
   }
 
   render() {
@@ -79,7 +80,7 @@ class FoodsForm extends Component {
             withRef
           />
         </div>
-        {/*<div>
+        {/* <div>
           <Field
             name="fats"
             component={TextField}
@@ -90,7 +91,7 @@ class FoodsForm extends Component {
             withRef
           />
         </div>*/}
-        {/*<div>
+        {/* <div>
           <Field
             name="servings"
             component={TextField}
@@ -151,11 +152,15 @@ function validate(values) {
   return errors;
 }
 
+// function mapStateToProps({ form }) {
+//   return { form };
+// }
+
 
 export default reduxForm({
   validate,
   form: 'FoodsNewForm',
 })(
-connect(null, { createFood })(FoodsForm)
-)
+connect(null, { createFood })(FoodsForm),
+);
 
