@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createFood } from '../actions/index';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
@@ -13,6 +13,9 @@ import {
 const required = (value) => { return (value == null ? 'Required' : undefined); };
 
 class FoodsForm extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   componentDidMount() {
     this.refs.title // the Field
@@ -25,7 +28,7 @@ class FoodsForm extends Component {
     console.log(values);
     // here we will call our action creator that will post to api
     this.props.createFood(values, () => {
-        this.props.history.push('/foods');
+      this.props.history.push('/foods');
     });
   }
 
@@ -46,16 +49,18 @@ class FoodsForm extends Component {
         </div>
         <div>
           <Field
-            name="category"
+            name="category_id"
             component={SelectField}
-            hintText="Meal Category"
+            hintText="Choose Meal Category"
             floatingLabelText="Meal Category"
             validate={required}
+            ref="category_id"
+            withRef
           >
-            <MenuItem value="Breakfast" primaryText="Breakfast" />
-            <MenuItem value="Lunch" primaryText="Lunch" />
-            <MenuItem value="Snack" primaryText="Snack" />
-            <MenuItem value="Dinner" primaryText="Dinner" />
+            <MenuItem value={1} primaryText="Breakfast" />
+            <MenuItem value={2} primaryText="Lunch" />
+            <MenuItem value={3} primaryText="Snack" />
+            <MenuItem value={4} primaryText="Dinner" />
           </Field>
         </div>
         <div>
@@ -72,36 +77,19 @@ class FoodsForm extends Component {
         <div>
           <Field
             name="macro_group"
-            component={TextField}
-            hintText="Enter Food Group"
+            component={SelectField}
+            hintText="Choose Food Group"
             floatingLabelText="Food group"
             validate={required}
             ref="macro_group"
             withRef
-          />
+          >
+            <MenuItem value="Carbs" primaryText="Carbs" />
+            <MenuItem value="Protein" primaryText="Protein" />
+            <MenuItem value="Fats" primaryText="Fats" />
+            <MenuItem value="Sugars" primaryText="Sugars" />
+          </Field>
         </div>
-        {/* <div>
-          <Field
-            name="fats"
-            component={TextField}
-            hintText="Enter fats"
-            floatingLabelText="Total fats"
-            validate={required}
-            ref="fats"
-            withRef
-          />
-        </div>*/}
-        {/* <div>
-          <Field
-            name="servings"
-            component={TextField}
-            hintText="Enter number of servings"
-            floatingLabelText="Number of Servings"
-            validate={required}
-            ref="fats"
-            withRef
-          />
-        </div>*/}
         <div>
           <Field
             name="date"
