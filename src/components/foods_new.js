@@ -12,7 +12,7 @@ class FoodsNew extends Component {
         <p> Please type in a food, and select the correct food and calorie data combination</p>
         <SearchBar />
         <p>Or, enter a food manually here:</p>
-        <FoodsForm />
+        <FoodsForm history={this.props.history} />
       </div>
     );
   }
