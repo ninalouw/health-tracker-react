@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createFood } from '../actions/index';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
@@ -13,9 +13,6 @@ import {
 const required = (value) => { return (value == null ? 'Required' : undefined); };
 
 class FoodsForm extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.refs.title // the Field

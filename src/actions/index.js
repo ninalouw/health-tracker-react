@@ -15,7 +15,7 @@ const config = {
 
 export function fetchFoods() {
   return (dispatch) => {
-    axios.defaults.headers.common.authorization = 'aa5179148ff1a49c33eb93b5060dae592ed25b33c0d5aa165b46e46d7cd53b69';
+    // axios.defaults.headers.common.authorization = 'aa5179148ff1a49c33eb93b5060dae592ed25b33c0d5aa165b46e46d7cd53b69';
     axios.get(`${ROOT_URL}/foods`, config)
    .then((response) => {
      console.log(response);
