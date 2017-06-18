@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 import SearchBar from '../containers/search_bar';
 import FoodsForm from './foods_form';
 

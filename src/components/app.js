@@ -6,6 +6,7 @@ import '../styles/styles.css';
 import FoodsIndex from './foods_index';
 import FoodsNew from './foods_new';
 import FoodsShow from './foods_show';
+import FoodCaloriesShow from './food_calories_show';
 import Main from './main';
 import Header from './header';
 
@@ -17,6 +18,7 @@ const App = () => {
           {injectTapEventPlugin()}
           <Header />
           <Switch>
+            <Route path="/foods/new/:id" component={FoodCaloriesShow} />
             <Route path="/foods/new" component={FoodsNew} />
             <Route path="/foods/:id" component={FoodsShow} />
             <Route exact path="/foods" component={FoodsIndex} />

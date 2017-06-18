@@ -9,7 +9,7 @@ class FoodsShow extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.post) {
+    if (!this.props.food) {
       const { id } = this.props.match.params;
       this.props.fetchFood(id);
     }

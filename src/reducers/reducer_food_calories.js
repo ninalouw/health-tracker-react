@@ -1,4 +1,4 @@
-import { FETCH_FOOD_CALORIES } from '../actions/index';
+import { FETCH_FOOD_CALORIES, FETCH_FOOD_CALORIE } from '../actions/index';
 
 const INITIAL_STATE = { foodCalorieList: [], food: null };
 export default function (state = INITIAL_STATE, action) {
@@ -6,6 +6,8 @@ export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_FOOD_CALORIES:
       return { ...state, foodCalorieList: action.payload.hits };
+    case FETCH_FOOD_CALORIE:
+      return { ...state, food: action.payload };
     default:
       return state;
   }

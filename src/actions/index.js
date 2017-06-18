@@ -3,9 +3,11 @@ import axios from 'axios';
 
 export const FETCH_FOODS = 'FETCH_FOODS';
 export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
+export const FETCH_FOOD_CALORIE = 'FETCH_FOOD_CALORIE';
 export const FETCH_FOOD = 'FETCH_FOOD';
 export const CREATE_FOOD = 'CREATE_FOOD';
 export const DELETE_FOOD = 'DELETE_FOOD';
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 
 const ROOT_URL = 'http://localhost:3000/api/v1';
 const config = {
@@ -68,18 +70,18 @@ export function fetchFoodCalories(query) {
   };
 }
 
-// export function createFood(values, callback) {
-//   return (dispatch) => {
-//     axios.post(`${ROOT_URL}/foods`, config, values)
-//    .then((response) => {
-//      console.log(response);
-//      dispatch({
-//        type: CREATE_FOOD,
-//        payload: response.data,
-//      });
-//    });
-//   };
-// }
+export function fetchFoodCalorie(id) {
+  return (dispatch) => {
+    axios.get(`https://api.nutritionix.com/v1_1/item?id=${id}&appId=${API_ID}&appKey=${API_KEY}`)
+   .then((response) => {
+     console.log(response);
+     dispatch({
+       type: FETCH_FOOD_CALORIE,
+       payload: response.data,
+     });
+   });
+  };
+}
 
 
 export function createFood(values, callback) {
@@ -89,5 +91,12 @@ export function createFood(values, callback) {
     type: CREATE_FOOD,
     payload: request,
   };
+}
+
+export function toggleModal(){
+
+  return {
+    type: TOGGLE_MODAL,
+  }
 }
 
