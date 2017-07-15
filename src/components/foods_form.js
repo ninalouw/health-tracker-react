@@ -82,8 +82,10 @@ class FoodsForm extends Component {
             ref="macro_group"
             withRef
           >
-            <MenuItem value="Carbs" primaryText="Carbs" />
-            <MenuItem value="Protein" primaryText="Protein" />
+            <MenuItem value="Carbohydrates" primaryText="Carbohydrates" />
+            <MenuItem value="Proteins" primaryText="Proteins" />
+            <MenuItem value="Vegetables" primaryText="Non-Starchy Vegetables" />
+            <MenuItem value="Fruits" primaryText="Fruits" />
             <MenuItem value="Fats" primaryText="Fats" />
             <MenuItem value="Sugars" primaryText="Sugars" />
           </Field>

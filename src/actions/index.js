@@ -12,7 +12,7 @@ export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 const ROOT_URL = 'http://localhost:3000/api/v1';
 const config = {
   headers: {
-    Authorization: 'aa5179148ff1a49c33eb93b5060dae592ed25b33c0d5aa165b46e46d7cd53b69' },
+    Authorization: '728643a127194cb618050aeea81bbf9056e907cbe3b1d60432c13b658034b31b' },
 };
 
 export function fetchFoods() {

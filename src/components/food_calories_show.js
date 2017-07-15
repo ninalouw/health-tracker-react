@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { fetchFoodCalorie } from '../actions/index';
+import FoodsForm from './foods_form';
 
 class FoodCaloriesShow extends Component {
   constructor(props) {
