@@ -4,6 +4,7 @@ import axios from 'axios';
 export const FETCH_FOODS = 'FETCH_FOODS';
 export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
 export const FETCH_FOOD_CALORIE = 'FETCH_FOOD_CALORIE';
+export const ENABLE_EDIT_FOOD = 'ENABLE_EDIT_FOOD';
 export const FETCH_FOOD = 'FETCH_FOOD';
 export const CREATE_FOOD = 'CREATE_FOOD';
 export const DELETE_FOOD = 'DELETE_FOOD';
@@ -33,7 +34,7 @@ export function fetchFood(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/foods/${id}`, config)
     .then((response) => {
-      console.log(response);
+      console.log(response, 'fetched food action');
       dispatch({
         type: FETCH_FOOD,
         payload: response.data,
@@ -48,6 +49,15 @@ export function deleteFood(id, callback) {
     .then(() => { return callback(); });
     dispatch({
       type: DELETE_FOOD,
+      payload: id,
+    });
+  };
+}
+
+export function enableEditMode(id) {
+  return (dispatch) => {
+    dispatch({
+      type: ENABLE_EDIT_FOOD,
       payload: id,
     });
   };

@@ -1,7 +1,7 @@
-import { FETCH_FOODS, FETCH_FOOD, DELETE_FOOD } from '../actions/index';
+import { FETCH_FOODS, FETCH_FOOD, DELETE_FOOD, ENABLE_EDIT_FOOD } from '../actions/index';
 import _ from 'lodash';
 
-const INITIAL_STATE = { foodList: [], food: null };
+const INITIAL_STATE = { foodList: [], food: null, editMode: false };
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case DELETE_FOOD:
@@ -11,6 +11,8 @@ export default function (state = INITIAL_STATE, action) {
 
     case FETCH_FOODS:
       return { ...state, foodList: action.payload };
+    case ENABLE_EDIT_FOOD:
+      return { ...state, food: action.payload, editMode: true };
     default:
       return state;
   }

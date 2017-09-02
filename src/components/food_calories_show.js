@@ -10,11 +10,11 @@ class FoodCaloriesShow extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.food) {
-      const { id } = this.props.match.params;
-      console.log('Here we call fetchFoodCalorie');
-      this.props.fetchFoodCalorie(id);
-    }
+    // if (!this.props.food) {
+    const { id } = this.props.match.params;
+    console.log('Here we call fetchFoodCalorie');
+    this.props.fetchFoodCalorie(id);
+    // }
   }
 
   render() {

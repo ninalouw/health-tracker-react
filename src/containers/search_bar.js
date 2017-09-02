@@ -37,9 +37,11 @@ class SearchBar extends Component {
         <li className="list-group-item" key={food.fields.item_id}>
           <span><strong>{food.fields.item_name}</strong></span>
           <span>Calories: {food.fields.nf_calories} kcal</span>
-          <span>Total Fat: {food.fields.nf_total_fat} grams</span>
           <span>Serving Size: {food.fields.nf_serving_size_qty} serving</span>
-          <span><button className="btn btn-secondary">Add Food</button></span>
+          <Link to={`new/${food.fields.item_id}`}>
+            <button className="btn btn-secondary">ADD THIS FOOD</button>
+          </Link>
+          {/*<span><button className="btn btn-secondary" onClick={this.handleFoodClick(food)}>Add Food</button></span>*/}
         </li>
       );
     });

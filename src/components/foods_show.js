@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router';
-import { fetchFood, deleteFood } from '../actions/index';
+import { fetchFood, deleteFood, enableEditMode } from '../actions/index';
 
 class FoodsShow extends Component {
   constructor(props) {
@@ -9,25 +9,50 @@ class FoodsShow extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.food) {
-      const { id } = this.props.match.params;
-      this.props.fetchFood(id);
-    }
+    // if (!this.props.food) {
+    const { id } = this.props.match.params;
+    this.props.fetchFood(id);
+    // console.log('Fetched food:', id);
+    // }
   }
 
   onDeleteClick() {
     const { id } = this.props.match.params;
     // here we call action creator deleteFood
     this.props.deleteFood(id, () => {
+      // should show delete confirmation msg here
+      // before redirect
       this.props.history.push('/foods');
+    });
+  }
+
+  onEditClick() {
+    const { id } = this.props.match.params;
+    // populate form or modal
+    this.props.enableEditMode(id);
+  }
+
+  onEditSubmit() {
+    const { id } = this.props.match.params;
+    // here we call action creator EditFood
+    this.props.EditFood(id, () => {
+      // this.props.history.push('/foods');
+      // we do not want to redirect to index
+      // we want to show successful edit message
+      // also we show the updated food item
+      this.props.fetchFood(id);
     });
   }
 
   render() {
     const { food } = this.props;
+    const { editMode } = this.props;
 
     if (!food) {
       return <div>Loading...</div>;
+    }
+    if (editMode) {
+      return <div>Edit form coming</div>;
     }
     switch (food.category_id) {
       case 1:
@@ -55,7 +80,13 @@ class FoodsShow extends Component {
           className="btn-secondary"
           onClick={this.onDeleteClick.bind(this)}
         >
-          Delete Food
+          Delete
+        </button>
+        <button
+          className="btn-primary"
+          onClick={this.onEditClick.bind(this)}
+        >
+          Edit
         </button>
       </div>
     );
@@ -63,7 +94,7 @@ class FoodsShow extends Component {
 }
 
 function mapStateToProps(state) {
-  return { food: state.foods.food };
+  return { food: state.foods.food, editMode: state.foods.editMode };
 }
 
 // grider - to ensure we are only rendering the one post
@@ -71,4 +102,4 @@ function mapStateToProps(state) {
 //     return { food: foods[ownProps.match.params.id] };
 // }
 
-export default connect(mapStateToProps, { fetchFood, deleteFood })(FoodsShow);
+export default connect(mapStateToProps, { fetchFood, deleteFood, enableEditMode })(FoodsShow);
