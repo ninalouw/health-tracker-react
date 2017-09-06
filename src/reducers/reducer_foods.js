@@ -1,4 +1,4 @@
-import { FETCH_FOODS, FETCH_FOOD, DELETE_FOOD, ENABLE_EDIT_FOOD } from '../actions/index';
+import { FETCH_FOODS, FETCH_FOOD, DELETE_FOOD, ENABLE_EDIT_FOOD, EDIT_FOOD } from '../actions/index';
 import _ from 'lodash';
 
 const INITIAL_STATE = { foodList: [], food: null, editMode: false };
@@ -13,6 +13,8 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, foodList: action.payload };
     case ENABLE_EDIT_FOOD:
       return { ...state, food: action.payload, editMode: true };
+    case EDIT_FOOD:
+      return { ...state, food: action.payload };
     default:
       return state;
   }

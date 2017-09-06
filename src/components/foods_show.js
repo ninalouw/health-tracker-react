@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import EditForm from './edit_form';
 // import { Link } from 'react-router';
 import { fetchFood, deleteFood, enableEditMode } from '../actions/index';
 
@@ -30,30 +31,27 @@ class FoodsShow extends Component {
     const { id } = this.props.match.params;
     // populate form or modal
     this.props.enableEditMode(id);
-  }
-
-  onEditSubmit() {
-    const { id } = this.props.match.params;
-    // here we call action creator EditFood
-    this.props.EditFood(id, () => {
-      // this.props.history.push('/foods');
-      // we do not want to redirect to index
-      // we want to show successful edit message
-      // also we show the updated food item
-      this.props.fetchFood(id);
-    });
+    console.log('edit click', id);
   }
 
   render() {
     const { food } = this.props;
     const { editMode } = this.props;
+    const { id } = this.props.match.params;
 
     if (!food) {
       return <div>Loading...</div>;
     }
     if (editMode) {
-      return <div>Edit form coming</div>;
+      return (
+        // render edit form here
+        <div className="foods-new">
+          <h2>Edit your Food</h2>
+          <EditForm id={this.props.match.params} value={this.props.food} history={this.props.history} />
+        </div>
+      );
     }
+
     switch (food.category_id) {
       case 1:
         food.category_id = 'Breakfast';

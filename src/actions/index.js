@@ -54,6 +54,17 @@ export function deleteFood(id, callback) {
   };
 }
 
+export function editFood(id, callback) {
+  return (dispatch) => {
+    axios.patch(`${ROOT_URL}/foods/${id}`, config)
+      .then(() => { return callback(); });
+    dispatch({
+      type: EDIT_FOOD,
+      payload: id,
+    });
+  };
+}
+
 export function enableEditMode(id) {
   return (dispatch) => {
     dispatch({
