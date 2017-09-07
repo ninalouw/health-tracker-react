@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { editFood, fetchFood } from '../actions/index';
+import { editFood, fetchFood, enableEditMode } from '../actions/index';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import MenuItem from 'material-ui/MenuItem';
 import {
@@ -28,6 +28,7 @@ class EditForm extends Component {
   onSubmit(id) {
     console.log(id);
         // set editMode to false again
+    this.props.enableEditMode(id);
         // here we will call our action creator that will post to api
     const editFoodCallback = () => {
     // show confirm edited message here
@@ -113,7 +114,7 @@ class EditForm extends Component {
           <Field
             name="date"
             component={DatePicker}
-            format={null}
+            format={(value, name) => value === '' ? null : (typeof value === 'string') ? new Date(value) : value}
             hintText="Food log date"
             validate={required}
           />
@@ -126,29 +127,13 @@ class EditForm extends Component {
             disabled={pristine || submitting}
             onClick={reset}
           >
-            Cancel
+            Undo Changes
           </button>
         </div>
       </form>
     );
   }
 }
-
-// function mapStateToProps(state) {
-//   return { initialValues: state.foods.food };
-// }
-
-// export default reduxForm({
-//   form: 'FoodsEditForm',
-//   enableReinitialize: true,
-// })(
-//     connect((state) => {
-//       return ({
-//         initialValues: state.foods.food,
-//       });
-//     }
-//     , { editFood, fetchFood })(EditForm),
-// );
 
 EditForm = reduxForm({
   form: 'FoodsEditForm',
@@ -160,6 +145,6 @@ EditForm = connect(
       return ({
         initialValues: state.foods.food,
       });
-    }, { editFood, fetchFood })(EditForm);
+    }, { editFood, fetchFood, enableEditMode })(EditForm);
 
 export default EditForm;
