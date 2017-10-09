@@ -5,6 +5,7 @@ export const FETCH_FOODS = 'FETCH_FOODS';
 export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
 export const FETCH_FOOD_CALORIE = 'FETCH_FOOD_CALORIE';
 export const ENABLE_EDIT_FOOD = 'ENABLE_EDIT_FOOD';
+export const EDIT_FOOD = 'EDIT_FOOD';
 export const FETCH_FOOD = 'FETCH_FOOD';
 export const CREATE_FOOD = 'CREATE_FOOD';
 export const DELETE_FOOD = 'DELETE_FOOD';
@@ -54,17 +55,6 @@ export function deleteFood(id, callback) {
   };
 }
 
-export function editFood(id, callback) {
-  return (dispatch) => {
-    axios.patch(`${ROOT_URL}/foods/${id}`, config)
-      .then(() => { return callback(); });
-    dispatch({
-      type: EDIT_FOOD,
-      payload: id,
-    });
-  };
-}
-
 export function enableEditMode(id) {
   return (dispatch) => {
     dispatch({
@@ -74,6 +64,16 @@ export function enableEditMode(id) {
   };
 }
 
+export function editFood(id, values, callback) {
+  return (dispatch) => {
+    const request = axios.patch(`${ROOT_URL}/foods/${id}`, config, { data: { food: values } })
+      .then(() => { return callback(); });
+    dispatch({
+      type: EDIT_FOOD,
+      payload: request,
+    });
+  };
+}
 
 const API_KEY = '66464e4956c3d5667e8fe482be63deda';
 const API_ID = '1e920e3e';
@@ -114,10 +114,9 @@ export function createFood(values, callback) {
   };
 }
 
-export function toggleModal(){
-
+export function toggleModal() {
   return {
     type: TOGGLE_MODAL,
-  }
+  };
 }
 

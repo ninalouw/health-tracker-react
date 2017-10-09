@@ -14,7 +14,7 @@ export default function (state = INITIAL_STATE, action) {
     case ENABLE_EDIT_FOOD:
       return { ...state, food: action.payload, editMode: true };
     case EDIT_FOOD:
-      return { ...state, food: action.payload };
+      return { ...state, food: action.payload, editMode: false };
     default:
       return state;
   }

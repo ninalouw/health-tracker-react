@@ -25,33 +25,19 @@ class EditForm extends Component {
             .focus(); // on TextField
   }
 
-  onSubmit(id) {
-    console.log(id);
-        // set editMode to false again
-    this.props.enableEditMode(id);
-        // here we will call our action creator that will post to api
+  onSubmit(values) {
+    const { id } = this.props.id;
+    // here we will call our action creator that will post to api
     const editFoodCallback = () => {
     // show confirm edited message here
       this.props.history.push('/foods');
+      console.log('food updated', id);
     };
-    this.props.editFood(id, editFoodCallback.bind(this));
+    this.props.editFood(id, values, editFoodCallback.bind(this));
   }
-
-//   onEditSubmit() {
-//       const { id } = this.props.match.params;
-//       // here we call action creator EditFood
-//       this.props.EditFood(id, () => {
-//           // this.props.history.push('/foods');
-//           // we do not want to redirect to index
-//           // we want to show successful edit message
-//           // also we show the updated food item
-//           this.props.fetchFood(id);
-//       });
-//   }
 
   render() {
     const { food, handleSubmit, pristine, reset, submitting } = this.props;
-    console.log('food is:', food);
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <div>

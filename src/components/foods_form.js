@@ -22,7 +22,6 @@ class FoodsForm extends Component {
   }
 
   onSubmit(values) {
-    console.log(values);
     // here we will call our action creator that will post to api
     const createFoodCallback = () => { 
       this.props.history.push('/foods'); 
