@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 import { fetchFoodCalories } from '../actions/index';
+// import ModalForm from '../components/modal_form';
+import { Link } from 'react-router-dom';
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-
     this.state = { term: '' };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.renderFoodCaloriesList = this.renderFoodCaloriesList.bind(this);
+    // this.handleFoodClick = this.handleFoodClick.bind(this);
   }
 
   onInputChange(event) {
@@ -41,7 +43,6 @@ class SearchBar extends Component {
           <Link to={`new/${food.fields.item_id}`}>
             <button className="btn btn-secondary">ADD THIS FOOD</button>
           </Link>
-          {/*<span><button className="btn btn-secondary" onClick={this.handleFoodClick(food)}>Add Food</button></span>*/}
         </li>
       );
     });

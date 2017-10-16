@@ -1,14 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { fetchFoodCalorie } from '../actions/index';
-import FoodsForm from './foods_form';
+import { fetchFoodCalorie, enableCreateMode } from '../actions/index';
+import FoodCalorieForm from './food_calories_new';
 
 class FoodCaloriesShow extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     // if (!this.props.food) {
     const { id } = this.props.match.params;
@@ -16,12 +11,32 @@ class FoodCaloriesShow extends Component {
     this.props.fetchFoodCalorie(id);
     // }
   }
+  onCreateClick() {
+    const { id } = this.props.match.params;
+    // populate form or modal
+    this.props.enableCreateMode(id);
+    console.log('create click', id);
+  }
 
   render() {
     const { food } = this.props;
+    const { createMode } = this.props;
+    const { id } = this.props.match.params;
 
     if (!food) {
       return <div>Loading...</div>;
+    }
+    if (createMode) {
+      return (
+        <div className="foods-new">
+          <h2>Submit your Food</h2>
+          <FoodCalorieForm
+            id={this.props.match.params}
+            food={this.props.food}
+            history={this.props.history}
+          />
+        </div>
+      );
     }
 
     return (
@@ -34,13 +49,20 @@ class FoodCaloriesShow extends Component {
         <p>Protein: {food.nf_protein} grams</p>
         <p>Total Fat: {food.nf_total_fat} grams</p>
         <p>Serving Size: {food.nf_serving_size_qty} serving</p>
+        <button
+          className="btn-primary"
+          onClick={this.onCreateClick.bind(this)}
+        >
+          Create Food
+        </button>
       </div>
     );
   }
 }
 
-function mapStateToProps({ foodCalories }) {
-  return { food: foodCalories.food };
+function mapStateToProps(state) {
+  return { food: state.foodCalories.food, createMode: state.foodCalories.createMode };
 }
 
-export default connect(mapStateToProps, { fetchFoodCalorie })(FoodCaloriesShow);
+
+export default connect(mapStateToProps, { fetchFoodCalorie, enableCreateMode })(FoodCaloriesShow);

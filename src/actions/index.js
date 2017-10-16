@@ -2,13 +2,15 @@
 import axios from 'axios';
 
 export const FETCH_FOODS = 'FETCH_FOODS';
-export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
-export const FETCH_FOOD_CALORIE = 'FETCH_FOOD_CALORIE';
 export const ENABLE_EDIT_FOOD = 'ENABLE_EDIT_FOOD';
+export const ENABLE_CREATE_FOOD = 'ENABLE_CREATE_FOOD';
 export const EDIT_FOOD = 'EDIT_FOOD';
 export const FETCH_FOOD = 'FETCH_FOOD';
 export const CREATE_FOOD = 'CREATE_FOOD';
 export const DELETE_FOOD = 'DELETE_FOOD';
+export const FETCH_FOOD_CALORIES = 'FETCH_FOOD_CALORIES';
+export const FETCH_FOOD_CALORIE = 'FETCH_FOOD_CALORIE';
+export const CREATE_FOOD_CALORIE = 'CREATE_FOOD_CALORIE';
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 
 const ROOT_URL = 'http://localhost:3000/api/v1';
@@ -19,7 +21,7 @@ const config = {
 
 export function fetchFoods() {
   return (dispatch) => {
-    // axios.defaults.headers.common.authorization = 'aa5179148ff1a49c33eb93b5060dae592ed25b33c0d5aa165b46e46d7cd53b69';
+// axios.defaults.headers.common.authorization = 'aa5179148ff1a49c33eb93b5060dae592ed25b33c0d5aa165b46e46d7cd53b69';
     axios.get(`${ROOT_URL}/foods`, config)
    .then((response) => {
      console.log(response);
@@ -59,6 +61,15 @@ export function enableEditMode(id) {
   return (dispatch) => {
     dispatch({
       type: ENABLE_EDIT_FOOD,
+      payload: id,
+    });
+  };
+}
+
+export function enableCreateMode(id) {
+  return (dispatch) => {
+    dispatch({
+      type: ENABLE_CREATE_FOOD,
       payload: id,
     });
   };
@@ -104,6 +115,14 @@ export function fetchFoodCalorie(id) {
   };
 }
 
+export function createFoodCalorie(values, callback) {
+  const request = axios.post(`${ROOT_URL}/foods`, config, { data: { food: values } })
+    .then(() => { return callback(); });
+  return {
+    type: CREATE_FOOD_CALORIE,
+    payload: request,
+  };
+}
 
 export function createFood(values, callback) {
   const request = axios.post(`${ROOT_URL}/foods`, config, { data: { food: values } })
