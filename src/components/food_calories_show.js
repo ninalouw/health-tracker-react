@@ -5,17 +5,13 @@ import FoodCalorieForm from './food_calories_new';
 
 class FoodCaloriesShow extends Component {
   componentDidMount() {
-    // if (!this.props.food) {
     const { id } = this.props.match.params;
-    console.log('Here we call fetchFoodCalorie');
     this.props.fetchFoodCalorie(id);
-    // }
   }
   onCreateClick() {
     const { id } = this.props.match.params;
     // populate form or modal
     this.props.enableCreateMode(id);
-    console.log('create click', id);
   }
 
   render() {
@@ -32,7 +28,7 @@ class FoodCaloriesShow extends Component {
           <h2>Submit your Food</h2>
           <FoodCalorieForm
             id={this.props.match.params}
-            food={this.props.food}
+            value={this.props.food}
             history={this.props.history}
           />
         </div>

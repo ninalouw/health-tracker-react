@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { editFood, fetchFood, enableEditMode } from '../actions/index';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import MenuItem from 'material-ui/MenuItem';
 import {
@@ -8,28 +7,24 @@ import {
     SelectField,
     TextField,
 } from 'redux-form-material-ui';
-
+import { editFood, fetchFood, enableEditMode } from '../actions/index';
 // validation functions
 const required = (value) => { return (value == null ? 'Required' : undefined); };
 
 class EditForm extends Component {
 
-
   componentDidMount() {
     const { id } = this.props.id;
-    // const food = this.props.fetchFood(id);
     console.log('fetched food with id:', id);
-    this.refs.title // the Field
-            .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
-            .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
-            .focus(); // on TextField
+    this.refs.title
+            .getRenderedComponent()
+            .getRenderedComponent()
+            .focus();
   }
 
   onSubmit(values) {
     const { id } = this.props.id;
-    // here we will call our action creator that will post to api
     const editFoodCallback = () => {
-    // show confirm edited message here
       this.props.history.push('/foods');
       console.log('food updated', id);
     };

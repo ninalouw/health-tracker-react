@@ -1,37 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import EditForm from './edit_form';
-// import { Link } from 'react-router';
 import { fetchFood, deleteFood, enableEditMode } from '../actions/index';
 
 class FoodsShow extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
-    // if (!this.props.food) {
     const { id } = this.props.match.params;
     this.props.fetchFood(id);
-    // console.log('Fetched food:', id);
-    // }
   }
 
   onDeleteClick() {
     const { id } = this.props.match.params;
-    // here we call action creator deleteFood
     this.props.deleteFood(id, () => {
-      // should show delete confirmation msg here
-      // before redirect
       this.props.history.push('/foods');
     });
   }
 
   onEditClick() {
     const { id } = this.props.match.params;
-    // populate form or modal
     this.props.enableEditMode(id);
-    console.log('edit click', id);
   }
 
   render() {
@@ -44,10 +32,9 @@ class FoodsShow extends Component {
     }
     if (editMode) {
       return (
-        // render edit form here
         <div className="foods-new">
           <h2>Edit your Food</h2>
-          <EditForm id={this.props.match.params} value={this.props.food} history={this.props.history} />
+          <EditForm id={this.props.match.params} food={this.props.food} history={this.props.history} />
         </div>
       );
     }
@@ -94,10 +81,5 @@ class FoodsShow extends Component {
 function mapStateToProps(state) {
   return { food: state.foods.food, editMode: state.foods.editMode };
 }
-
-// grider - to ensure we are only rendering the one post
-// function mapStateToProps( {foods}, ownProps) {
-//     return { food: foods[ownProps.match.params.id] };
-// }
 
 export default connect(mapStateToProps, { fetchFood, deleteFood, enableEditMode })(FoodsShow);

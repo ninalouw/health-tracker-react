@@ -19,10 +19,10 @@ class FoodCalorieForm extends Component {
     const { food } = this.props.food;
     console.log('fetched food with id:', id);
     console.log('fetched food:', food);
-    this.refs.title // the Field
-            .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
-            .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
-            .focus(); // on TextField
+    this.refs.title
+            .getRenderedComponent()
+            .getRenderedComponent()
+            .focus();
   }
 
   onSubmit(values) {

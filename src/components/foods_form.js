@@ -9,20 +9,18 @@ import {
   TextField,
 } from 'redux-form-material-ui';
 
-// validation functions
 const required = (value) => { return (value == null ? 'Required' : undefined); };
 
 class FoodsForm extends Component {
 
   componentDidMount() {
-    this.refs.title // the Field
-      .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
-      .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
-      .focus(); // on TextField
+    this.refs.title
+      .getRenderedComponent()
+      .getRenderedComponent()
+      .focus();
   }
 
   onSubmit(values) {
-    // here we will call our action creator that will post to api
     const createFoodCallback = () => { 
       this.props.history.push('/foods'); 
     };
@@ -116,7 +114,6 @@ class FoodsForm extends Component {
 
 function validate(values) {
   const errors = {};
-// validate the inputs from 'values'
   if (!values.title) {
     errors.title = 'Please enter a title';
   }
@@ -135,14 +132,8 @@ function validate(values) {
   if (!values.date) {
     errors.date = 'Please enter the date';
   }
-// if errors obj empty, the form can be submitted
   return errors;
 }
-
-// function mapStateToProps({ form }) {
-//   return { form };
-// }
-
 
 export default reduxForm({
   validate,

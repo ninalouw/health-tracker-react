@@ -1,4 +1,3 @@
-// export * from './action_types'
 import axios from 'axios';
 
 export const FETCH_FOODS = 'FETCH_FOODS';
@@ -21,10 +20,8 @@ const config = {
 
 export function fetchFoods() {
   return (dispatch) => {
-// axios.defaults.headers.common.authorization = 'aa5179148ff1a49c33eb93b5060dae592ed25b33c0d5aa165b46e46d7cd53b69';
     axios.get(`${ROOT_URL}/foods`, config)
    .then((response) => {
-     console.log(response);
      dispatch({
        type: FETCH_FOODS,
        payload: response.data,
@@ -37,7 +34,6 @@ export function fetchFood(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/foods/${id}`, config)
     .then((response) => {
-      console.log(response, 'fetched food action');
       dispatch({
         type: FETCH_FOOD,
         payload: response.data,
@@ -93,7 +89,6 @@ export function fetchFoodCalories(query) {
   return (dispatch) => {
     axios.get(`https://api.nutritionix.com/v1_1/search/${query}?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=${API_ID}&appKey=${API_KEY}`)
    .then((response) => {
-     console.log(response);
      dispatch({
        type: FETCH_FOOD_CALORIES,
        payload: response.data,
@@ -106,7 +101,6 @@ export function fetchFoodCalorie(id) {
   return (dispatch) => {
     axios.get(`https://api.nutritionix.com/v1_1/item?id=${id}&appId=${API_ID}&appKey=${API_KEY}`)
    .then((response) => {
-     console.log(response);
      dispatch({
        type: FETCH_FOOD_CALORIE,
        payload: response.data,
@@ -132,10 +126,3 @@ export function createFood(values, callback) {
     payload: request,
   };
 }
-
-export function toggleModal() {
-  return {
-    type: TOGGLE_MODAL,
-  };
-}
-

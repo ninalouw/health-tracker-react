@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import { fetchFoodCalories } from '../actions/index';
-// import ModalForm from '../components/modal_form';
 import { Link } from 'react-router-dom';
 
 class SearchBar extends Component {
@@ -13,17 +11,14 @@ class SearchBar extends Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.renderFoodCaloriesList = this.renderFoodCaloriesList.bind(this);
-    // this.handleFoodClick = this.handleFoodClick.bind(this);
   }
 
   onInputChange(event) {
-    console.log(event.target.value);
     this.setState({ term: event.target.value });
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-    // Here need to fetch the food calorie data
     this.props.fetchFoodCalories(this.state.term);
     this.setState({ term: '' });
   }

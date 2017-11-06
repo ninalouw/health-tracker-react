@@ -44,7 +44,6 @@ class FoodsIndex extends Component {
 
 function mapStateToProps(state) {
   return { foods: state.foods.foodList };
-  // return { foods: state.foods };
 }
 
 export default connect(mapStateToProps, { fetchFoods })(FoodsIndex);
